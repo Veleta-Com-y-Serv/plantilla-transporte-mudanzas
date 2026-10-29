@@ -1,0 +1,64 @@
+---
+// Apartado de texto genérico: antetítulo, título, párrafos, `imagen` opcional, `items` y `cta`.
+// Con imagen: banda partida a sangre (foto hasta el borde de la ventana, con sesgo). Sin imagen: banda clara con el
+// título a la izquierda y los párrafos a la derecha en escritorio. Lo usan los apartados nuevos (`tipo: texto`).
+import { seccion, parrafos } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
+import Imagen from '../ui/Imagen.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+---
+
+{
+  s && (
+    <section id={Astro.props.id} class:list={['texto-apartado', s.imagen ? 'partido partido--foto-der banda-gris' : 'seccion']}>
+      <div class:list={[s.imagen ? 'partido-texto' : 'contenedor texto-sin-foto']}>
+        <div>
+          {s.antetitulo && <p class="antetitulo">{s.antetitulo}</p>}
+          {s.titulo && <h2 class="titulo-seccion">{s.titulo}</h2>}
+        </div>
+        <div>
+          <div class="texto-parrafos">
+            {parrafos(s.texto).map((p) => <p>{p}</p>)}
+          </div>
+          {s.items.length > 0 && (
+            <ul class="texto-items">
+              {s.items.map((it) => (
+                <li>
+                  <span class="texto-item-icono"><Icono nombre={it.icono} tam={20} /></span>
+                  <div>
+                    <p class="texto-item-titulo">{it.titulo}</p>
+                    {it.texto && <p class="text-[.95rem] opacity-80">{it.texto}</p>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+          {s.cta?.url && <a class="btn mt-8" href={s.cta.url}>{s.cta.texto}</a>}
+        </div>
+      </div>
+      {s.imagen && (
+        <div class="partido-foto texto-foto">
+          <Imagen src={s.imagen} alt={altSeccion(s)} ancho={1200} alto={900} />
+        </div>
+      )}
+    </section>
+  )
+}
+
+<style>
+  .texto-parrafos { margin-top: 1.5rem; display: grid; gap: 1rem; font-size: 1.08rem; opacity: .9; max-width: 44rem; }
+  .texto-items { margin-top: 2rem; display: grid; border-top: 1px solid var(--linea); }
+  .texto-items li { display: flex; gap: 1rem; padding-block: 1rem; border-bottom: 1px solid var(--linea); }
+  .texto-item-icono { display: grid; place-items: center; flex-shrink: 0; width: 2.5rem; height: 2.3rem; background: var(--c-primario); color: var(--sobre-primario); }
+  .texto-item-titulo { font-weight: 900; font-style: italic; text-transform: uppercase; }
+  .texto-foto { aspect-ratio: 4 / 3; }
+  @media (min-width: 768px) {
+    .texto-foto { aspect-ratio: auto; min-height: 30rem; clip-path: polygon(var(--sesgo) 0, 100% 0, 100% 100%, 0 100%); }
+  }
+  @media (min-width: 1024px) {
+    .texto-sin-foto { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; }
+    .texto-sin-foto .texto-parrafos { margin-top: 2.4rem; }
+  }
+</style>

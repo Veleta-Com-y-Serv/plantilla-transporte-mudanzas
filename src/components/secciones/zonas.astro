@@ -1,0 +1,54 @@
+---
+// Cobertura (zonas): banda amarilla partida a sangre. A la izquierda, titular, `texto` (radio de actuación) y las
+// localidades de `items` (titulo) como señales de carretera marino con borde blanco; `cta` opcional.
+// A la derecha, `imagen` a sangre hasta el borde de la ventana con el borde en sesgo. Sin imagen, a todo el ancho.
+import { seccion } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
+import Titular from '../ui/Titular.astro';
+import Imagen from '../ui/Imagen.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const zonas = s ? s.items.filter((it) => it && it.titulo) : [];
+---
+
+{
+  s && (
+    <section id={Astro.props.id} class:list={['zonas banda-primaria', s.imagen ? 'partido partido--foto-der' : '']}>
+      <div class:list={[s.imagen ? 'partido-texto' : 'contenedor seccion']}>
+        <Titular class="!mb-8" antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        {zonas.length > 0 && (
+          <ul class="senales">
+            {zonas.map((z) => (
+              <li class="senal">
+                <Icono nombre="mapa" tam={16} class="shrink-0" />
+                {z.titulo}
+              </li>
+            ))}
+          </ul>
+        )}
+        {s.cta && (
+          <p class="mt-10">
+            <a class="btn btn--marino" href={s.cta.url}>{s.cta.texto}</a>
+          </p>
+        )}
+      </div>
+      {s.imagen && (
+        <div class="partido-foto zonas-foto">
+          <Imagen src={s.imagen} alt={altSeccion(s)} ancho={1200} alto={900} />
+        </div>
+      )}
+    </section>
+  )
+}
+
+<style>
+  .senales { display: flex; flex-wrap: wrap; gap: .6rem; }
+  .senal { display: inline-flex; align-items: center; gap: .45rem; min-height: 2.5rem; padding: .45rem .9rem; border-radius: .35rem; background: var(--c-texto); color: var(--c-fondo); font-weight: 800; font-size: .92rem; box-shadow: inset 0 0 0 2px var(--c-texto), inset 0 0 0 4px var(--c-fondo); }
+  .zonas :global(.titular-texto) { opacity: .9; }
+  .zonas-foto { aspect-ratio: 4 / 3; }
+  @media (min-width: 768px) {
+    .zonas-foto { aspect-ratio: auto; min-height: 34rem; }
+    .zonas-foto { clip-path: polygon(var(--sesgo) 0, 100% 0, 100% 100%, 0 100%); }
+  }
+</style>

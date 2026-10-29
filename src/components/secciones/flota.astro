@@ -1,0 +1,66 @@
+---
+// Flota: banda marino a todo el ancho. Titular partido dentro del contenido y, debajo, mosaico de borde a borde sin
+// márgenes: cada vehículo es una foto alta a sangre con velo marino, la capacidad en placa amarilla, el nombre y su texto.
+// `flota: [{nombre, texto, capacidad, imagen}]`. Sin foto, la ficha va sobre marino con el icono del camión.
+// Sin vehículos ni texto, no se pinta (la plataforma no inventa la flota).
+import { seccion } from '../../data/site';
+import { altFicha } from '../../lib/seo';
+import Titular from '../ui/Titular.astro';
+import Imagen from '../ui/Imagen.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const flota = s ? s.flota.filter((v) => v && (v.nombre || v.texto)) : [];
+---
+
+{
+  s && (flota.length > 0 || s.texto) && (
+    <section id={Astro.props.id} class="flota banda-oscura">
+      <div class="contenedor seccion !pb-12 md:!pb-16">
+        <Titular alinear="partido" class="!mb-0" antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+      </div>
+      {flota.length > 0 && (
+        <ul class="flota-mosaico">
+          {flota.map((v) => (
+            <li class:list={['vehiculo', { 'vehiculo--sin-foto': !v.imagen }]}>
+              {v.imagen ? (
+                <Imagen src={v.imagen} alt={altFicha(v)} ancho={900} alto={1200} class="vehiculo-foto" />
+              ) : (
+                <span class="vehiculo-icono" aria-hidden="true"><Icono nombre="camion" tam={64} /></span>
+              )}
+              <div class="vehiculo-texto">
+                {v.capacidad && <p class="placa"><span>{v.capacidad}</span></p>}
+                {v.nombre && <h3 class="vehiculo-nombre">{v.nombre}</h3>}
+                {v.texto && <p class="vehiculo-desc">{v.texto}</p>}
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+      {s.cta && (
+        <div class="contenedor py-12">
+          <a class="btn" href={s.cta.url}>{s.cta.texto}</a>
+        </div>
+      )}
+      <div class="linea-vial" aria-hidden="true" />
+    </section>
+  )
+}
+
+<style>
+  .flota-mosaico { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: 3px; background: var(--c-texto); }
+  .vehiculo { position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: flex-end; min-height: 26rem; background: var(--marino-hondo); }
+  .vehiculo :global(.vehiculo-foto) { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+  .vehiculo::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, transparent 25%, color-mix(in srgb, var(--c-texto) 55%, transparent) 55%, color-mix(in srgb, var(--c-texto) 94%, transparent) 100%); }
+  .vehiculo:hover :global(.vehiculo-foto) { transform: scale(1.05); }
+  .vehiculo--sin-foto::after { display: none; }
+  .vehiculo-icono { position: absolute; top: 2rem; left: 1.5rem; color: var(--c-primario); opacity: .9; }
+  .vehiculo-texto { padding: 1.75rem 1rem 2rem; }
+  .vehiculo-nombre { margin-top: 1rem; font-size: clamp(1.6rem, 6vw, 2.1rem); }
+  .vehiculo-desc { margin-top: .6rem; opacity: .9; max-width: 30rem; }
+  @media (min-width: 768px) {
+    .vehiculo { min-height: 34rem; }
+    .vehiculo-texto { padding: 2rem 2rem 2.25rem; }
+  }
+  @media (min-width: 1280px) { .vehiculo { min-height: 38rem; } }
+</style>

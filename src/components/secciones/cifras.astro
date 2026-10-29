@@ -1,0 +1,39 @@
+---
+// Cifras: banda marino a todo el ancho con números enormes en amarillo y cursiva, separados por líneas discontinuas.
+// `items: [{titulo (la cifra, "+300"), texto}]`. No se pinta si la lista está vacía (la plataforma nunca inventa cifras).
+import { seccion } from '../../data/site';
+import Titular from '../ui/Titular.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const items = s ? s.items.filter((it) => it && it.titulo) : [];
+---
+
+{
+  s && items.length > 0 && (
+    <section id={Astro.props.id} class="cifras-banda banda-oscura seccion">
+      <div class="contenedor">
+        <Titular alinear="partido" antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        <dl class="cifras" style={`--cols:${Math.min(items.length, 4)}`}>
+          {items.map((it) => (
+            <div class="cifra">
+              <dt class="cifra-numero">{it.titulo}</dt>
+              {it.texto && <dd class="cifra-texto">{it.texto}</dd>}
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .cifras { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cifra { min-width: 0; padding: 1.5rem 1rem 1.5rem 0; border-top: 2px dashed color-mix(in srgb, var(--c-primario) 70%, transparent); }
+  .cifra-numero { font-family: var(--fuente-titulos); font-weight: 900; font-style: italic; font-size: clamp(2.4rem, 11vw, 4.5rem); line-height: .95; letter-spacing: -0.03em; color: var(--c-primario); overflow-wrap: break-word; padding-right: .1em; }
+  .cifra-texto { margin-top: .6rem; font-weight: 800; text-transform: uppercase; font-size: .85rem; letter-spacing: .08em; }
+  @media (min-width: 1200px) {
+    .cifras { grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); }
+    .cifra { padding: 1.5rem 1.5rem .5rem; border-top: 0; border-left: 2px dashed color-mix(in srgb, var(--c-primario) 70%, transparent); }
+    .cifra-numero { font-size: clamp(3rem, 4.6vw, 6rem); }
+  }
+</style>

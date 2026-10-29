@@ -1,0 +1,136 @@
+---
+// Formulario sin servidor: si hay email en site.yaml abre el programa de correo (mailto) con los campos en el cuerpo.
+// Si no hay email, se queda como muestra y lo avisa. Para un envío real, cambia `action` por el de tu proveedor.
+// Modelos:
+//  - `ruta` (barra del hero, en una fila en escritorio): origen, destino, fecha y teléfono.
+//  - `mudanza` (presupuesto): nombre, teléfono, origen, destino, fecha, tamaño (opciones de presupuesto.opciones) y mensaje.
+//  - `contacto`: nombre, email o teléfono y mensaje.
+// `prefijo` hace únicos los ids cuando hay varios formularios en la misma página.
+import { site, tamanos } from '../../data/site';
+interface Props { boton?: string; class?: string; asunto?: string; modelo?: 'ruta' | 'mudanza' | 'contacto'; prefijo?: string }
+const {
+  boton = 'Enviar',
+  class: clase = '',
+  asunto = `Presupuesto desde la web de ${site.nombre}`,
+  modelo = 'contacto',
+  prefijo = 'f',
+} = Astro.props;
+const email = site.contacto.email;
+const accion = email ? `mailto:${email}?subject=${encodeURIComponent(asunto)}` : '';
+const opciones = modelo === 'mudanza' ? tamanos() : [];
+const id = (campo: string) => `${prefijo}-${campo}`;
+---
+
+{
+  modelo === 'ruta' ? (
+    <form class:list={['formulario formulario--ruta', clase]} action={accion || undefined} method="post" enctype="text/plain">
+      <div class="ruta-campos">
+        <div class="campo">
+          <label for={id('origen')}>Origen</label>
+          <input id={id('origen')} name="origen" type="text" autocomplete="address-level2" required />
+        </div>
+        <div class="campo">
+          <label for={id('destino')}>Destino</label>
+          <input id={id('destino')} name="destino" type="text" required />
+        </div>
+        <div class="campo">
+          <label for={id('fecha')}>Fecha</label>
+          <input id={id('fecha')} name="fecha" type="date" />
+        </div>
+        <div class="campo">
+          <label for={id('telefono')}>Teléfono</label>
+          <input id={id('telefono')} name="telefono" type="tel" autocomplete="tel" inputmode="tel" required />
+        </div>
+        <button type="submit" class="btn btn--marino">{boton}</button>
+      </div>
+      <label class="campo-check">
+        <input type="checkbox" name="privacidad" required />
+        <span>He leído el <a href="/aviso-legal">aviso legal y la política de privacidad</a>.</span>
+      </label>
+    </form>
+  ) : (
+    <form class:list={['formulario', clase]} action={accion || undefined} method="post" enctype="text/plain">
+      {modelo === 'contacto' ? (
+        <div class="campo-doble">
+          <div class="campo">
+            <label for={id('nombre')}>Nombre</label>
+            <input id={id('nombre')} name="nombre" type="text" autocomplete="name" required />
+          </div>
+          <div class="campo">
+            <label for={id('contacto')}>Email o teléfono</label>
+            <input id={id('contacto')} name="contacto" type="text" autocomplete="email" required />
+          </div>
+        </div>
+      ) : (
+        <>
+          <div class="campo-doble">
+            <div class="campo">
+              <label for={id('nombre')}>Nombre</label>
+              <input id={id('nombre')} name="nombre" type="text" autocomplete="name" required />
+            </div>
+            <div class="campo">
+              <label for={id('telefono')}>Teléfono</label>
+              <input id={id('telefono')} name="telefono" type="tel" autocomplete="tel" inputmode="tel" required />
+            </div>
+          </div>
+          <div class="campo-doble">
+            <div class="campo">
+              <label for={id('origen')}>Origen</label>
+              <input id={id('origen')} name="origen" type="text" autocomplete="address-level2" required />
+            </div>
+            <div class="campo">
+              <label for={id('destino')}>Destino</label>
+              <input id={id('destino')} name="destino" type="text" required />
+            </div>
+          </div>
+          <div class="campo-doble">
+            <div class="campo">
+              <label for={id('fecha')}>Fecha aproximada</label>
+              <input id={id('fecha')} name="fecha" type="date" />
+            </div>
+            <div class="campo">
+              <label for={id('tamano')}>Tamaño de la mudanza</label>
+              {opciones.length > 0 ? (
+                <select id={id('tamano')} name="tamano">
+                  {opciones.map((t) => <option value={t}>{t}</option>)}
+                  <option value="Otro">Otro</option>
+                </select>
+              ) : (
+                <input id={id('tamano')} name="tamano" type="text" />
+              )}
+            </div>
+          </div>
+        </>
+      )}
+      <div class="campo">
+        <label for={id('mensaje')}>{modelo === 'mudanza' ? 'Qué hay que mover (pisos, ascensor, muebles grandes…)' : 'Mensaje'}</label>
+        <textarea id={id('mensaje')} name="mensaje" rows={4} required></textarea>
+      </div>
+      <label class="campo-check">
+        <input type="checkbox" name="privacidad" required />
+        <span>He leído el <a href="/aviso-legal">aviso legal y la política de privacidad</a>.</span>
+      </label>
+      <button type="submit" class="btn">{boton}</button>
+      <p class="formulario-aviso">
+        {
+          email
+            ? 'Al enviar se abre tu programa de correo con el mensaje listo.'
+            : 'Formulario de muestra: todavía no envía mensajes. Usa el teléfono o el email de contacto.'
+        }
+      </p>
+    </form>
+  )
+}
+
+<style>
+  .ruta-campos { display: grid; gap: .85rem; }
+  @media (min-width: 640px) { .ruta-campos { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) {
+    .ruta-campos { grid-template-columns: 1.2fr 1.2fr .9fr 1fr auto; align-items: end; }
+  }
+  .formulario--ruta .btn { min-height: 3rem; justify-self: stretch; }
+  @media (min-width: 640px) and (max-width: 1023px) { .formulario--ruta .btn { grid-column: 1 / -1; } }
+  .formulario--ruta .campo input { border-color: transparent; }
+  .formulario--ruta .campo input:focus { border-color: var(--c-texto); }
+  .formulario--ruta .campo-check { font-size: .82rem; }
+</style>

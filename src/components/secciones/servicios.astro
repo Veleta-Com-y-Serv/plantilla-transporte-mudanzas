@@ -1,0 +1,83 @@
+---
+// Servicios: banda clara a todo el ancho con titular partido y rejilla de 4 columnas sin tarjetas (celdas separadas por
+// líneas finas, número, icono en placa amarilla; al pasar el ratón la celda se vuelve marino). `items: [{titulo, texto, icono}]`.
+// Debajo, `galeria` (lista de fotos) como franja de fotos de borde a borde, sin márgenes. Sus títulos son también las
+// opciones del formulario. `cta` opcional.
+import { seccion } from '../../data/site';
+import { altGaleria } from '../../lib/seo';
+import Titular from '../ui/Titular.astro';
+import Icono from '../ui/Icono.astro';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const fotos = s ? s.galeria.slice(0, 8) : [];
+---
+
+{
+  s && (
+    <section id={Astro.props.id} class="servicios">
+      <div class="contenedor seccion !pb-0">
+        <Titular alinear="partido" antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        {s.items.length > 0 && (
+          <ul class="servicios-rejilla">
+            {s.items.map((it, i) => (
+              <li class="servicio">
+                <div class="servicio-cabeza">
+                  <span class="servicio-icono"><Icono nombre={it.icono} tam={26} /></span>
+                  <span class="servicio-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                </div>
+                <h3 class="servicio-titulo">{it.titulo}</h3>
+                {it.texto && <p class="servicio-texto">{it.texto}</p>}
+              </li>
+            ))}
+          </ul>
+        )}
+        {s.cta && (
+          <p class="mt-10">
+            <a class="btn" href={s.cta.url}>{s.cta.texto}</a>
+          </p>
+        )}
+      </div>
+      <div class:list={['servicios-pie', { 'servicios-pie--sin-fotos': fotos.length === 0 }]}>
+        {fotos.length > 0 && (
+          <ul class="franja-fotos" style={`--n:${Math.min(fotos.length, 4)}`}>
+            {fotos.map((f, i) => (
+              <li>
+                <Imagen src={f} alt={altGaleria(i)} ancho={800} alto={800} />
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .servicios-rejilla { display: grid; border-top: 1px solid var(--linea); }
+  .servicio { padding: 1.75rem 0 2rem; border-bottom: 1px solid var(--linea); transition: background-color .2s ease, color .2s ease; }
+  .servicio-cabeza { display: flex; align-items: center; justify-content: space-between; }
+  .servicio-icono { display: inline-grid; place-items: center; width: 3.25rem; height: 2.9rem; background: var(--c-primario); color: var(--sobre-primario); transform: skewX(-10deg); }
+  .servicio-icono :global(svg) { transform: skewX(10deg); }
+  .servicio-num { font-family: var(--fuente-titulos); font-weight: 900; font-style: italic; font-size: 1.1rem; opacity: .35; }
+  .servicio-titulo { margin-top: 1.25rem; font-size: 1.25rem; }
+  .servicio-texto { margin-top: .6rem; opacity: .78; font-size: .98rem; }
+  @media (min-width: 640px) {
+    .servicios-rejilla { grid-template-columns: repeat(2, minmax(0, 1fr)); border-left: 1px solid var(--linea); }
+    .servicio { padding: 2rem 1.75rem 2.25rem; border-right: 1px solid var(--linea); }
+  }
+  @media (min-width: 1100px) { .servicios-rejilla { grid-template-columns: repeat(4, minmax(0, 1fr)); } .servicio { padding: 2.25rem 2rem 2.5rem; } }
+  @media (hover: hover) {
+    .servicio:hover { background: var(--c-texto); color: var(--c-fondo); }
+    .servicio:hover .servicio-num { opacity: .7; color: var(--c-primario); }
+  }
+
+  .servicios-pie { margin-top: var(--ritmo); }
+  .servicios-pie--sin-fotos { margin-top: 0; padding-bottom: var(--ritmo); }
+  @media (min-width: 768px) { .servicios-pie { margin-top: var(--ritmo-md); } .servicios-pie--sin-fotos { margin-top: 0; padding-bottom: var(--ritmo-md); } }
+  .franja-fotos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (min-width: 640px) { .franja-fotos { grid-template-columns: repeat(var(--n), minmax(0, 1fr)); } }
+  .franja-fotos li { position: relative; aspect-ratio: 1 / 1; overflow: hidden; background: var(--superficie); }
+  .franja-fotos :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .franja-fotos li:hover :global(img) { transform: scale(1.04); }
+</style>

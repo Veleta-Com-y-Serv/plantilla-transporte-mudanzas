@@ -1,0 +1,165 @@
+# Contenido de la web. Es lo único que rellena la plataforma NoExpertise.
+# Una sola página: el menú apunta a anclas (#id-de-sección).
+# Las secciones se muestran en el orden de este fichero. Para ocultar una: activa: false.
+# Apartado nuevo: un id propio (es su ancla, /#id) con `tipo:` = el diseño de otra sección o `texto`.
+# Listas planas: nunca una lista dentro de un elemento de lista. Precios y cifras, siempre entre comillas.
+nombre: Mudanzas Penyagolosa
+eslogan: Mudanzas, portes y guardamuebles en Castellón. Equipo propio, camiones propios y precio cerrado.
+sector: mudanzas
+logo: ""          # ruta a una imagen en public/ (p. ej. /logo.svg). Vacío = inicial en placa amarilla + nombre.
+colores:
+  primario: "#f8c20a"   # amarillo señal (botones, barra de ruta, banda de cobertura, contacto)
+  acento: "#1f5fd1"     # azul de detalle (foco)
+  fondo: "#ffffff"
+  texto: "#0b1e3c"      # azul marino: letra y bandas oscuras (cabecera, hero, flota, cifras, presupuesto, pie)
+contacto:
+  telefono: "964 31 72 05"
+  email: presupuestos@mudanzaspenyagolosa.es
+  direccion: Camí de la Plana 18, 12006 Castelló de la Plana (Castellón)
+  horario: "Lunes a viernes, de 8:00 a 19:00. Sábados, de 8:00 a 14:00."
+  whatsapp: "+34 633 52 18 47"
+redes:
+  instagram: https://www.instagram.com/
+  facebook: https://www.facebook.com/
+  linkedin: ""
+menu:
+  - { texto: Servicios, url: "/#servicios" }
+  - { texto: Flota, url: "/#flota" }
+  - { texto: Cobertura, url: "/#zonas" }
+  - { texto: Cómo trabajamos, url: "/#proceso" }
+  - { texto: Opiniones, url: "/#opiniones" }
+  - { texto: Contacto, url: "/#contacto" }
+boton_cabecera: { texto: Pide presupuesto, url: "/#presupuesto" }
+seo:
+  titulo: Mudanzas Penyagolosa · Mudanzas y portes en Castellón
+  descripcion: "Mudanzas de pisos y oficinas, portes, elevador exterior y guardamuebles en Castellón y toda España. Presupuesto cerrado y seguro incluido."
+  tipo: MovingCompany
+marca_pie: true
+
+secciones:
+  hero:
+    activa: true
+    antetitulo: Mudanzas en Castellón y toda España
+    titulo: Tu mudanza, sin un solo rasguño
+    texto: "Embalamos, desmontamos, cargamos y te lo dejamos montado en la casa nueva. Con nuestros camiones y nuestra gente."
+    imagen: /fotos/hero.jpg
+    destacado: { titulo: Seguro a todo riesgo, texto: "Incluido en cada mudanza, sin letra pequeña." }
+    cta: { texto: Llamar ahora, url: "tel:+34964317205" }
+    cta_secundario: { texto: Presupuesto gratis, url: "/#presupuesto" }
+    formulario_titulo: "¿De dónde a dónde?"
+    boton_formulario: Calcular mi mudanza
+
+  servicios:
+    activa: true
+    antetitulo: Servicios
+    titulo: Movemos todo lo que tengas
+    texto: "Desde un sofá hasta una oficina entera. Tú eliges cuánto hacemos nosotros."
+    items:
+      - { titulo: Mudanzas de pisos y casas, texto: "Locales y nacionales, con embalaje y montaje si los quieres.", icono: casa }
+      - { titulo: Mudanzas de oficinas, texto: "En fin de semana o de noche, para que no dejes de trabajar.", icono: maletin }
+      - { titulo: Mudanzas nacionales, texto: "Rutas semanales a Valencia, Madrid, Barcelona y el norte.", icono: ruta }
+      - { titulo: Portes y pequeños transportes, texto: "Un mueble, una compra grande o lo que quepa en una furgoneta.", icono: furgoneta }
+      - { titulo: Embalaje y cajas, texto: "Cajas, papel, plástico de burbujas y mantas. Te lo traemos o lo embalamos por ti.", icono: caja }
+      - { titulo: Desmontaje y montaje, texto: "Armarios, camas y cocinas, desmontados aquí y montados en destino.", icono: herramienta }
+      - { titulo: Guardamuebles, texto: "Trasteros vigilados por días, semanas o meses.", icono: almacen }
+      - { titulo: Elevador exterior, texto: "Subimos los muebles por la fachada cuando no caben por la escalera.", icono: elevador }
+    galeria:
+      - /fotos/embalaje.jpg
+      - /fotos/carga.jpg
+      - /fotos/montaje.jpg
+      - /fotos/guardamuebles.jpg
+
+  flota:
+    activa: true
+    antetitulo: Flota propia
+    titulo: Un vehículo para cada mudanza
+    texto: "Todos nuestros, revisados y con mantas, correas y carro. Elegimos el que necesitas para que no pagues de más."
+    flota:
+      - { nombre: Furgoneta, texto: "Portes, estudios y casco antiguo: entra por cualquier calle.", capacidad: "12 m³ · 1.200 kg", imagen: /fotos/flota-furgoneta.jpg }
+      - { nombre: Camión con trampilla, texto: "Pisos de una a tres habitaciones. Plataforma trasera para cargar sin esfuerzo.", capacidad: "25 m³ · 3.500 kg", imagen: /fotos/flota-camion.jpg }
+      - { nombre: Camión grande, texto: "Casas completas, oficinas y mudanzas a otras provincias.", capacidad: "45 m³ · 8.000 kg", imagen: /fotos/flota-camion-grande.jpg }
+      - { nombre: Elevador exterior, texto: "Sube y baja muebles por el balcón o la ventana hasta un noveno piso.", capacidad: "Hasta 28 m de altura", imagen: /fotos/flota-elevador.jpg }
+
+  zonas:
+    activa: true
+    antetitulo: Cobertura
+    titulo: De la Plana a toda España
+    texto: "Mudanzas a diario en la provincia de Castellón y rutas semanales al resto de la península. Si tu destino no está, pregúntanos."
+    imagen: /fotos/cobertura.jpg
+    cta: { texto: Consultar mi ruta, url: "/#presupuesto" }
+    items:
+      - { titulo: Castelló de la Plana }
+      - { titulo: Vila-real }
+      - { titulo: Benicàssim }
+      - { titulo: Almassora }
+      - { titulo: Borriana }
+      - { titulo: Onda }
+      - { titulo: "L'Alcora" }
+      - { titulo: Nules }
+      - { titulo: Orpesa }
+      - { titulo: Vinaròs }
+      - { titulo: València }
+      - { titulo: Teruel }
+      - { titulo: Resto de España }
+
+  proceso:
+    activa: true
+    antetitulo: Cómo trabajamos
+    titulo: Del primer aviso a la última caja
+    items:
+      - { titulo: Nos cuentas la mudanza, texto: "Por teléfono, WhatsApp o el formulario: de dónde, a dónde y qué hay que mover.", icono: telefono }
+      - { titulo: Visita o videollamada, texto: "Vemos los muebles y los accesos contigo, sin compromiso.", icono: camara }
+      - { titulo: Precio cerrado, texto: "Te enviamos el presupuesto por escrito, con fecha y hora de llegada.", icono: euro }
+      - { titulo: Día de la mudanza, texto: "Embalamos, cargamos, llevamos y montamos. Tú solo abres la puerta.", icono: camion }
+
+  cifras:
+    activa: true
+    antetitulo: En números
+    titulo: Kilómetros de oficio
+    items:
+      - { titulo: "+3.200", texto: mudanzas terminadas }
+      - { titulo: "18", texto: años en Castellón }
+      - { titulo: "6", texto: vehículos propios }
+      - { titulo: "24 h", texto: para tu presupuesto }
+
+  opiniones:
+    activa: true
+    antetitulo: Opiniones
+    titulo: Lo que dicen quienes ya se han mudado
+    testimonios:
+      - { texto: "Llegaron a las ocho en punto, lo embalaron todo y a las cuatro teníamos las camas montadas en la casa nueva. No se rompió ni un vaso.", autor: Marta y Jordi, nota: "Piso de tres habitaciones, de Castelló a Benicàssim" }
+      - { texto: "Mudamos la oficina un sábado y el lunes estábamos trabajando. Pagamos exactamente lo que ponía el presupuesto.", autor: Asesoría del Grau, nota: "Oficina, Castelló de la Plana" }
+      - { texto: "Me subieron el sofá con el elevador por el balcón en diez minutos. Muy amables y muy cuidadosos.", autor: Vicente R., nota: "Porte con elevador, Vila-real" }
+
+  preguntas:
+    activa: true
+    antetitulo: Preguntas frecuentes
+    titulo: Lo que nos preguntan antes de mudarse
+    preguntas:
+      - { pregunta: "¿El presupuesto tiene coste?", respuesta: "No. Vamos a verlo o lo hacemos por videollamada y te damos un precio cerrado por escrito, sin compromiso." }
+      - { pregunta: "¿Con cuánta antelación tengo que avisar?", respuesta: "Lo ideal son dos o tres semanas, sobre todo a final de mes y en verano. Para portes pequeños, muchas veces podemos ir el mismo día o al siguiente." }
+      - { pregunta: "¿Qué pasa si se rompe algo?", respuesta: "Cada mudanza va con seguro a todo riesgo. Si algo sufre un daño, lo reparamos o te lo pagamos." }
+      - { pregunta: "¿Tengo que embalar yo?", respuesta: "Como prefieras. Podemos dejarte las cajas para que embales tú o embalarlo todo nosotros el día antes." }
+      - { pregunta: "¿Os encargáis del permiso para aparcar el camión?", respuesta: "Sí. Pedimos la reserva de espacio al ayuntamiento cuando hace falta y te avisamos cuando está concedida." }
+      - { pregunta: "¿Puedo guardar los muebles unos días?", respuesta: "Sí. Tenemos guardamuebles vigilado en nuestra nave y te lo llevamos a la casa nueva cuando la tengas lista." }
+
+  presupuesto:
+    activa: true
+    antetitulo: Presupuesto gratis
+    titulo: Cuéntanos tu mudanza
+    texto: "Rellena el formulario y te llamamos para concretar la visita o la videollamada."
+    imagen: /fotos/presupuesto.jpg
+    nota: "Sin compromiso. Te contestamos en el día."
+    boton_formulario: Pedir presupuesto
+    opciones: "Solo unos muebles; Estudio o trastero; Piso pequeño; Piso grande; Casa o chalé; Oficina o local"
+    items:
+      - { titulo: Seguro incluido, texto: "Todo lo que movemos va asegurado.", icono: escudo }
+      - { titulo: Precio cerrado, texto: "Lo que firmas es lo que pagas.", icono: euro }
+      - { titulo: Equipo propio, texto: "Sin subcontratas: la misma gente de principio a fin.", icono: usuarios }
+
+  contacto:
+    activa: true
+    antetitulo: Contacto
+    titulo: Llámanos o ven a la nave
+    texto: "Te atendemos por teléfono, WhatsApp o en persona. También puedes ver el guardamuebles."
+    imagen: /fotos/nave.jpg

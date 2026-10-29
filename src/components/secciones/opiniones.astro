@@ -1,0 +1,68 @@
+---
+// Opiniones: banda gris azulada a todo el ancho. La primera opinión va enorme, como cita, con una comilla amarilla;
+// las demás, a su lado en escritorio (debajo en móvil), separadas por líneas, sin tarjetas.
+// `testimonios: [{texto, autor, nota}]` (`nota` opcional: el servicio y el trayecto). Sin opiniones solo se pinta
+// el titular (o nada si tampoco hay). No inventes opiniones.
+import { seccion } from '../../data/site';
+import Titular from '../ui/Titular.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const lista = s ? s.testimonios.filter((t) => t && t.texto) : [];
+const [primera, ...resto] = lista;
+const hayAlgo = s && (lista.length > 0 || s.titulo || s.texto);
+---
+
+{
+  s && hayAlgo && (
+    <section id={Astro.props.id} class="opiniones banda-gris seccion">
+      <div class="contenedor">
+        <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        {primera && (
+          <div class:list={['opiniones-rejilla', { 'opiniones-rejilla--una': resto.length === 0 }]}>
+            <figure class="opinion-grande">
+              <span class="opinion-comilla" aria-hidden="true">“</span>
+              <blockquote class="opinion-grande-texto">{primera.texto}</blockquote>
+              <figcaption class="opinion-autor">
+                <span class="placa"><span>{primera.autor}</span></span>
+                {primera.nota && <span class="opinion-nota">{primera.nota}</span>}
+              </figcaption>
+            </figure>
+            {resto.length > 0 && (
+              <ul class="opiniones-resto">
+                {resto.map((t) => (
+                  <li>
+                    <figure>
+                      <blockquote class="opinion-texto">{t.texto}</blockquote>
+                      <figcaption class="mt-4">
+                        <span class="opinion-autor-nombre">{t.autor}</span>
+                        {t.nota && <span class="opinion-nota block">{t.nota}</span>}
+                      </figcaption>
+                    </figure>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .opiniones-rejilla { display: grid; gap: 3rem; }
+  .opinion-grande { position: relative; margin: 0; }
+  .opinion-comilla { display: block; font-family: Georgia, "Times New Roman", serif; font-weight: 900; font-size: 8rem; line-height: .7; height: 4.2rem; color: var(--c-primario); -webkit-text-stroke: 2px var(--c-texto); }
+  .opinion-grande-texto { font-family: var(--fuente-titulos); font-weight: 800; font-style: italic; font-size: clamp(1.45rem, 5.2vw, 2.6rem); line-height: 1.2; letter-spacing: -0.015em; }
+  .opinion-autor { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; margin-top: 2rem; }
+  .opinion-nota { font-size: .9rem; opacity: .72; }
+  .opiniones-resto { display: grid; align-content: start; }
+  .opiniones-resto li { padding-block: 1.75rem; border-top: 3px solid var(--c-texto); }
+  .opiniones-resto li:last-child { border-bottom: 1px solid var(--linea); }
+  .opinion-texto { font-size: 1.08rem; line-height: 1.6; }
+  .opinion-autor-nombre { font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: .02em; }
+  @media (min-width: 1024px) {
+    .opiniones-rejilla { grid-template-columns: 1.45fr 1fr; gap: 5rem; }
+    .opiniones-rejilla--una { grid-template-columns: 1fr; max-width: 64rem; }
+  }
+</style>

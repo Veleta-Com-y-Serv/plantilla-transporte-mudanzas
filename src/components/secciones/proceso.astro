@@ -1,0 +1,70 @@
+---
+// Proceso: banda clara con una carretera marino a todo el ancho de la ventana y su línea discontinua amarilla.
+// Los pasos (`items: [{titulo, texto, icono}]`) son hitos numerados sobre la carretera; en escritorio en horizontal
+// (hasta 4 por fila) y en móvil la carretera se pone en vertical a la izquierda. `cta` opcional.
+import { seccion } from '../../data/site';
+import Titular from '../ui/Titular.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const pasos = s ? s.items.filter((it) => it && it.titulo) : [];
+const columnas = Math.min(Math.max(pasos.length, 1), 4);
+---
+
+{
+  s && (
+    <section id={Astro.props.id} class="proceso seccion">
+      <div class="contenedor">
+        <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+      </div>
+      {pasos.length > 0 && (
+        <div class="carretera">
+          <div class="contenedor">
+            <ol class="pasos" style={`--cols:${columnas}`}>
+              {pasos.map((it, i) => (
+                <li class="paso">
+                  <span class="paso-hito" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                  <div class="paso-texto">
+                    <h3 class="paso-titulo">
+                      {it.icono && <Icono nombre={it.icono} class="shrink-0" tam={22} />}
+                      {it.titulo}
+                    </h3>
+                    {it.texto && <p class="paso-desc">{it.texto}</p>}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      )}
+      {s.cta && (
+        <div class="contenedor mt-12">
+          <a class="btn" href={s.cta.url}>{s.cta.texto}</a>
+        </div>
+      )}
+    </section>
+  )
+}
+
+<style>
+  .carretera { position: relative; }
+  /* Móvil: carretera vertical a la izquierda */
+  .carretera::before { content: ""; position: absolute; top: 0; bottom: 0; left: 1rem; width: 3.75rem; background: var(--c-texto); }
+  .carretera::after { content: ""; position: absolute; top: 0; bottom: 0; left: calc(1rem + 1.875rem - 2px); width: 4px; background: repeating-linear-gradient(180deg, var(--c-primario) 0 1.75rem, transparent 1.75rem 2.75rem); }
+  .pasos { position: relative; z-index: 1; display: grid; gap: 0; }
+  .paso { display: grid; grid-template-columns: 3.75rem 1fr; gap: 1.25rem; padding-block: 1.5rem; }
+  .paso-hito { display: grid; place-items: center; width: 3.75rem; height: 3.75rem; font-family: var(--fuente-titulos); font-weight: 900; font-style: italic; font-size: 1.35rem; background: var(--c-primario); color: var(--sobre-primario); border: 4px solid var(--c-texto); }
+  .paso-titulo { display: flex; align-items: center; gap: .5rem; font-size: 1.3rem; padding-top: .2rem; }
+  .paso-titulo :global(svg) { color: var(--c-acento); }
+  .paso-desc { margin-top: .5rem; opacity: .8; }
+
+  /* Escritorio: carretera horizontal a todo el ancho de la ventana */
+  @media (min-width: 900px) {
+    .carretera::before { left: 0; right: 0; width: auto; top: 0; bottom: auto; height: 6rem; }
+    .carretera::after { left: 0; right: 0; width: auto; top: calc(3rem - 2px); bottom: auto; height: 4px; background: repeating-linear-gradient(90deg, var(--c-primario) 0 2.75rem, transparent 2.75rem 4.25rem); }
+    .pasos { grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: 2rem; }
+    .paso { grid-template-columns: 1fr; gap: 1.75rem; padding-block: 0; }
+    .paso-hito { width: 6rem; height: 6rem; font-size: 2.4rem; border-width: 6px; transform: skewX(-10deg); }
+    .paso-titulo { font-size: 1.45rem; }
+  }
+</style>

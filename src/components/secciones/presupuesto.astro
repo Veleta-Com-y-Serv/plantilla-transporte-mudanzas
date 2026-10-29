@@ -1,0 +1,69 @@
+---
+// Presupuesto: banda partida a sangre. A la izquierda, `imagen` (cajas, salón vacío) hasta el borde de la ventana con
+// el borde derecho en sesgo; a la derecha, panel marino con titular, garantías (`items` con icono), `nota` en placa
+// amarilla y el formulario de mudanza (nombre, teléfono, origen, destino, fecha, tamaño y qué hay que mover) que abre
+// el correo. Opciones del tamaño: `opciones` («Estudio; Piso pequeño; …»). `boton_formulario` opcional.
+// Sin imagen, el panel ocupa todo el ancho.
+import { seccion } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
+import Titular from '../ui/Titular.astro';
+import Icono from '../ui/Icono.astro';
+import Imagen from '../ui/Imagen.astro';
+import FormularioContacto from '../ui/FormularioContacto.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const botonForm = (s?.boton_formulario as string) || 'Enviar';
+const garantias = s ? s.items.filter((it) => it && it.titulo) : [];
+---
+
+{
+  s && (
+    <section id={id} class:list={['presupuesto banda-oscura', s.imagen ? 'partido partido--foto-izq' : '']}>
+      {s.imagen && (
+        <div class="partido-foto presupuesto-foto">
+          <Imagen src={s.imagen} alt={altSeccion(s)} ancho={1200} alto={900} />
+        </div>
+      )}
+      <div class:list={[s.imagen ? 'partido-texto' : 'contenedor seccion']}>
+        <Titular class="!mb-8" antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        {garantias.length > 0 && (
+          <ul class="garantias">
+            {garantias.map((it) => (
+              <li class="garantia">
+                <span class="garantia-icono"><Icono nombre={it.icono} tam={20} /></span>
+                <div>
+                  <p class="garantia-titulo">{it.titulo}</p>
+                  {it.texto && <p class="garantia-texto">{it.texto}</p>}
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+        {s.nota && <p class="placa presupuesto-nota"><span>{s.nota}</span></p>}
+        <FormularioContacto modelo="mudanza" prefijo={`${id}-f`} boton={botonForm} class="presupuesto-form" />
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .presupuesto-foto { aspect-ratio: 16 / 10; }
+  .garantias { display: grid; gap: 1.1rem; }
+  .garantia { display: flex; gap: .85rem; }
+  .garantia-icono { display: grid; place-items: center; flex-shrink: 0; width: 2.5rem; height: 2.5rem; border: 2px solid var(--c-primario); color: var(--c-primario); }
+  .garantia-titulo { font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: .02em; }
+  .garantia-texto { font-size: .95rem; opacity: .8; }
+  .presupuesto-nota { margin-top: 2rem; }
+  .presupuesto :global(.presupuesto-form) { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--linea-clara); }
+  @media (min-width: 640px) { .garantias { grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1.5rem; } }
+  @media (min-width: 768px) {
+    .presupuesto-foto { aspect-ratio: auto; clip-path: polygon(0 0, 100% 0, calc(100% - var(--sesgo)) 100%, 0 100%); }
+  }
+  @media (min-width: 768px) and (max-width: 1099px) {
+    /* En tableta el formulario necesita aire: foto arriba a todo el ancho, panel debajo */
+    .presupuesto.partido { grid-template-columns: minmax(0, 1fr); }
+    .presupuesto-foto { aspect-ratio: 21 / 9; clip-path: none; }
+    .presupuesto.partido :global(.partido-texto) { padding-inline: var(--lateral); }
+  }
+</style>

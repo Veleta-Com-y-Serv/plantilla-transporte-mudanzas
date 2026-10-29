@@ -1,0 +1,95 @@
+---
+// Contacto: banda amarilla a todo el ancho con titular partido, el teléfono enorme (se pulsa para llamar) y, en
+// columnas, WhatsApp, email, dirección y horario de site.yaml → contacto. Debajo, `imagen` (la nave) como franja a
+// sangre de borde a borde. Si la sección «presupuesto» no está activa, añade aquí el formulario de contacto.
+import { seccion, site, tel, whatsapp, mapa } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
+import Titular from '../ui/Titular.astro';
+import Icono from '../ui/Icono.astro';
+import Imagen from '../ui/Imagen.astro';
+import FormularioContacto from '../ui/FormularioContacto.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const c = site.contacto;
+const conFormulario = !seccion('presupuesto');
+const botonForm = (s?.boton_formulario as string) || 'Enviar';
+---
+
+{
+  s && (
+    <section id={id} class="contacto banda-primaria">
+      <div class="contenedor seccion">
+        <Titular alinear="partido" antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        {c.telefono && (
+          <a class="contacto-telefono" href={tel(c.telefono)}>
+            <Icono nombre="telefono" tam={44} class="contacto-telefono-icono" />
+            <span>{c.telefono}</span>
+          </a>
+        )}
+        <div class:list={['contacto-cuerpo', { 'contacto-cuerpo--form': conFormulario }]}>
+          <ul class="contacto-datos">
+            {c.whatsapp && (
+              <li>
+                <p class="dato-etiqueta"><Icono nombre="whatsapp" tam={18} />WhatsApp</p>
+                <a class="dato-valor" href={whatsapp(c.whatsapp)} rel="noopener" target="_blank">{c.whatsapp}</a>
+              </li>
+            )}
+            {c.email && (
+              <li>
+                <p class="dato-etiqueta"><Icono nombre="correo" tam={18} />Email</p>
+                <a class="dato-valor break-all" href={`mailto:${c.email}`}>{c.email}</a>
+              </li>
+            )}
+            {c.direccion && (
+              <li>
+                <p class="dato-etiqueta"><Icono nombre="mapa" tam={18} />Dirección</p>
+                <a class="dato-valor" href={mapa(c.direccion)} rel="noopener" target="_blank">{c.direccion}</a>
+              </li>
+            )}
+            {c.horario && (
+              <li>
+                <p class="dato-etiqueta"><Icono nombre="reloj" tam={18} />Horario</p>
+                <p class="dato-valor">{c.horario}</p>
+              </li>
+            )}
+          </ul>
+          {conFormulario && (
+            <div class="contacto-form">
+              <FormularioContacto modelo="contacto" prefijo={`${id}-f`} boton={botonForm} />
+            </div>
+          )}
+        </div>
+      </div>
+      {s.imagen && (
+        <div class="contacto-foto">
+          <Imagen src={s.imagen} alt={altSeccion(s)} ancho={1920} alto={820} />
+        </div>
+      )}
+    </section>
+  )
+}
+
+<style>
+  .contacto-telefono { display: inline-flex; align-items: center; gap: .9rem; max-width: 100%; font-family: var(--fuente-titulos); font-weight: 900; font-style: italic; font-size: clamp(2.3rem, 11vw, 7.5rem); line-height: 1; letter-spacing: -0.03em; text-decoration: none; overflow-wrap: anywhere; }
+  .contacto-telefono:hover span { text-decoration: underline; text-decoration-thickness: 6px; text-underline-offset: 8px; }
+  .contacto :global(.contacto-telefono-icono) { width: clamp(2rem, 7vw, 4.5rem); height: auto; flex-shrink: 0; }
+  .contacto-cuerpo { margin-top: 3rem; display: grid; gap: 2.5rem; }
+  .contacto-datos { display: grid; gap: 0; }
+  .contacto-datos li { padding-block: 1.1rem; border-top: 3px solid var(--sobre-primario); min-width: 0; }
+  .dato-etiqueta { display: flex; align-items: center; gap: .45rem; font-size: .75rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; opacity: .8; }
+  .dato-valor { display: inline-block; margin-top: .35rem; font-weight: 800; font-size: 1.08rem; line-height: 1.4; text-decoration: none; overflow-wrap: anywhere; }
+  a.dato-valor:hover { text-decoration: underline; }
+  .contacto-form { background: var(--c-fondo); color: var(--c-texto); padding: 1.5rem 1rem; }
+  .contacto-form :focus-visible { outline-color: var(--c-acento); }
+  .contacto-foto { position: relative; aspect-ratio: 16 / 9; }
+  .contacto-foto :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  @media (min-width: 640px) { .contacto-datos { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2rem; } }
+  @media (min-width: 1100px) {
+    .contacto-datos { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+    .contacto-cuerpo--form { grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: start; }
+    .contacto-cuerpo--form .contacto-datos { grid-template-columns: 1fr 1fr; }
+    .contacto-form { padding: 2.25rem; }
+    .contacto-foto { aspect-ratio: 21 / 7; }
+  }
+</style>
