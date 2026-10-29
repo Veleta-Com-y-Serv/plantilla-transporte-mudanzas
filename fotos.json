@@ -1,14 +1,62 @@
 [
-  { "fichero": "fotos/hero.jpg", "aspecto": "4:3", "prompt": "Camión de mudanzas blanco de tamaño medio, sin rotular, aparcado de lado en una calle ancha de una ciudad mediterránea española con edificios de viviendas de cinco plantas y palmeras, portón trasero abierto con mantas azules y cajas de cartón dentro, luz dorada de primera hora de la mañana, encuadre a tres cuartos, sin gente, sin texto, sin matrículas legibles ni logotipos" },
-  { "fichero": "fotos/embalaje.jpg", "aspecto": "1:1", "prompt": "Detalle de manos con guantes de trabajo precintando una caja de cartón sobre el suelo de madera de un piso vacío, rollo de cinta adhesiva, papel de embalar y plástico de burbujas alrededor, luz natural lateral de ventana, plano cenital cercano, sin caras, sin texto ni logotipos" },
-  { "fichero": "fotos/carga.jpg", "aspecto": "1:1", "prompt": "Interior de la caja de carga de un camión de mudanzas visto desde atrás: muebles envueltos en mantas acolchadas azules, cajas de cartón apiladas y sujetas con correas amarillas, suelo de madera, luz de día entrando por el portón, sin gente, sin texto ni logotipos" },
-  { "fichero": "fotos/montaje.jpg", "aspecto": "1:1", "prompt": "Armario de madera clara a medio montar en un dormitorio luminoso recién pintado de blanco, destornillador eléctrico, caja de herrajes y tornillos sobre una manta en el suelo, luz suave de tarde, sin gente, sin texto ni marcas" },
-  { "fichero": "fotos/guardamuebles.jpg", "aspecto": "1:1", "prompt": "Pasillo de un guardamuebles limpio y ordenado con trasteros de chapa metálica gris con puertas enrollables cerradas, suelo de hormigón pulido, luz fluorescente fría cenital, perspectiva central, sin gente, sin texto, sin números ni carteles" },
-  { "fichero": "fotos/flota-furgoneta.jpg", "aspecto": "3:4", "prompt": "Furgoneta blanca grande de reparto sin rotular aparcada en una calle estrecha de un casco antiguo mediterráneo con fachadas de colores claros y balcones de forja, puertas traseras abiertas con mantas dentro, luz de mañana, encuadre vertical a tres cuartos, sin gente, sin texto ni matrícula legible" },
-  { "fichero": "fotos/flota-camion.jpg", "aspecto": "3:4", "prompt": "Camión carrozado blanco de mudanzas con plataforma elevadora trasera bajada al nivel del suelo, aparcado frente a un portal de un edificio de viviendas español, una carretilla de carga sobre la plataforma, luz de día nublado, encuadre vertical desde atrás a tres cuartos, sin gente, sin texto ni logotipos ni matrícula legible" },
-  { "fichero": "fotos/flota-camion-grande.jpg", "aspecto": "3:4", "prompt": "Camión rígido grande blanco de caja cerrada, sin rotular, circulando por una autovía española entre campos de naranjos con montañas suaves al fondo, atardecer cálido, encuadre vertical en ligera contrapicada desde el arcén, sin gente visible, sin texto, sin matrícula legible ni logotipos" },
-  { "fichero": "fotos/flota-elevador.jpg", "aspecto": "3:4", "prompt": "Elevador exterior de mudanzas montado sobre un vehículo, con la escalera de aluminio inclinada apoyada en el balcón de un cuarto piso de un edificio de ladrillo claro, una plataforma con un sillón envuelto en manta a media altura, cielo azul, encuadre vertical desde la acera, sin gente reconocible, sin texto ni logotipos" },
-  { "fichero": "fotos/cobertura.jpg", "aspecto": "4:3", "prompt": "Vista aérea de una autovía que cruza la llanura de la Plana de Castellón entre huertos de naranjos y pequeños pueblos blancos, el mar Mediterráneo a lo lejos y la sierra al otro lado, luz de mañana limpia, sin texto ni carteles legibles" },
-  { "fichero": "fotos/presupuesto.jpg", "aspecto": "4:3", "prompt": "Salón vacío de un piso con suelo de baldosa clara y grandes ventanas, cajas de cartón cerradas apiladas en el centro y un sofá envuelto en film transparente, luz natural de tarde entrando por las ventanas, sensación de orden, sin gente, sin texto ni marcas en las cajas" },
-  { "fichero": "fotos/nave.jpg", "aspecto": "16:9", "prompt": "Exterior de una nave industrial de polígono pintada en gris claro con dos portones grandes abiertos, un camión blanco sin rotular y una furgoneta aparcados delante, cielo despejado del Mediterráneo, palmera al fondo, luz de mediodía suave, sin gente, sin carteles, sin texto ni logotipos" }
+  {
+    "fichero": "fotos/hero.jpg",
+    "aspecto": "4:3",
+    "prompt": "Camión de mudanzas blanco de tamaño medio, sin rotular, aparcado de lado en una calle ancha de una ciudad mediterránea española con edificios de viviendas de cinco plantas y palmeras, portón trasero abierto con mantas azules y cajas de cartón dentro, luz dorada de primera hora de la mañana, encuadre a tres cuartos, sin gente, sin texto, sin matrículas legibles ni logotipos"
+  },
+  {
+    "fichero": "fotos/embalaje.jpg",
+    "aspecto": "1:1",
+    "prompt": "Detalle de manos con guantes de trabajo precintando una caja de cartón sobre el suelo de madera de un piso vacío, rollo de cinta adhesiva, papel de embalar y plástico de burbujas alrededor, luz natural lateral de ventana, plano cenital cercano, sin caras, sin texto ni logotipos"
+  },
+  {
+    "fichero": "fotos/carga.jpg",
+    "aspecto": "1:1",
+    "prompt": "Interior de la caja de carga de un camión de mudanzas visto desde atrás: muebles envueltos en mantas acolchadas azules, cajas de cartón apiladas y sujetas con correas amarillas, suelo de madera, luz de día entrando por el portón, sin gente, sin texto ni logotipos"
+  },
+  {
+    "fichero": "fotos/montaje.jpg",
+    "aspecto": "1:1",
+    "prompt": "Armario de madera clara a medio montar en un dormitorio luminoso recién pintado de blanco, destornillador eléctrico, caja de herrajes y tornillos sobre una manta en el suelo, luz suave de tarde, sin gente, sin texto ni marcas"
+  },
+  {
+    "fichero": "fotos/guardamuebles.jpg",
+    "aspecto": "1:1",
+    "prompt": "Pasillo de un guardamuebles limpio y ordenado con trasteros de chapa metálica gris con puertas enrollables cerradas, suelo de hormigón pulido, luz fluorescente fría cenital, perspectiva central, sin gente, sin texto, sin números ni carteles"
+  },
+  {
+    "fichero": "fotos/flota-furgoneta.jpg",
+    "aspecto": "3:4",
+    "prompt": "Furgoneta blanca grande de reparto sin rotular aparcada en una calle estrecha de un casco antiguo mediterráneo con fachadas de colores claros y balcones de forja, puertas traseras abiertas con mantas dentro, luz de mañana, encuadre vertical a tres cuartos, sin gente, sin texto ni matrícula legible"
+  },
+  {
+    "fichero": "fotos/flota-camion.jpg",
+    "aspecto": "3:4",
+    "prompt": "Camión carrozado blanco de mudanzas con plataforma elevadora trasera bajada al nivel del suelo, aparcado frente a un portal de un edificio de viviendas español, una carretilla de carga sobre la plataforma, luz de día nublado, encuadre vertical desde atrás a tres cuartos, sin gente, sin texto ni logotipos ni matrícula legible"
+  },
+  {
+    "fichero": "fotos/flota-camion-grande.jpg",
+    "aspecto": "3:4",
+    "prompt": "Camión rígido grande blanco de caja cerrada, sin rotular, circulando por una autovía española entre campos de naranjos con montañas suaves al fondo, atardecer cálido, encuadre vertical en ligera contrapicada desde el arcén, sin gente visible, sin texto, sin matrícula legible ni logotipos, vista desde lejos y de perfil lateral, cabina completamente lisa y genérica sin emblema ni estrella en la parrilla, sin marca reconocible"
+  },
+  {
+    "fichero": "fotos/flota-elevador.jpg",
+    "aspecto": "3:4",
+    "prompt": "Elevador exterior de mudanzas montado sobre un vehículo, con la escalera de aluminio inclinada apoyada en el balcón de un cuarto piso de un edificio de ladrillo claro, una plataforma con un sillón envuelto en manta a media altura, cielo azul, encuadre vertical desde la acera, sin gente reconocible, sin texto ni logotipos, vehículo completamente liso sin pegatinas ni rótulos en las puertas, sin matrícula visible, visto desde un ángulo que no muestra la parte trasera"
+  },
+  {
+    "fichero": "fotos/cobertura.jpg",
+    "aspecto": "4:3",
+    "prompt": "Vista aérea de una autovía que cruza la llanura de la Plana de Castellón entre huertos de naranjos y pequeños pueblos blancos, el mar Mediterráneo a lo lejos y la sierra al otro lado, luz de mañana limpia, sin texto ni carteles legibles"
+  },
+  {
+    "fichero": "fotos/presupuesto.jpg",
+    "aspecto": "4:3",
+    "prompt": "Salón vacío de un piso con suelo de baldosa clara y grandes ventanas, cajas de cartón cerradas apiladas en el centro y un sofá envuelto en film transparente, luz natural de tarde entrando por las ventanas, sensación de orden, sin gente, sin texto ni marcas en las cajas"
+  },
+  {
+    "fichero": "fotos/nave.jpg",
+    "aspecto": "16:9",
+    "prompt": "Exterior de una nave industrial de polígono pintada en gris claro con dos portones grandes abiertos, un camión blanco sin rotular y una furgoneta aparcados delante, cielo despejado del Mediterráneo, palmera al fondo, luz de mediodía suave, sin gente, sin carteles, sin texto ni logotipos"
+  }
 ]
