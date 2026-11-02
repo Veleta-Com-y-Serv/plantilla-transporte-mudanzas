@@ -1,9 +1,11 @@
 ---
 // Cobertura (zonas): banda amarilla partida a sangre. A la izquierda, titular, `texto` (radio de actuación) y las
 // localidades de `items` (titulo) como señales de carretera marino con borde blanco; `cta` opcional.
+// Las zonas con `texto` tienen página propia (/zonas/<slug>/) y su señal es un enlace; las demás siguen como texto.
 // A la derecha, `imagen` a sangre hasta el borde de la ventana con el borde en sesgo. Sin imagen, a todo el ancho.
 import { seccion } from '../../data/site';
 import { altSeccion } from '../../lib/seo';
+import { enlaceDe } from '../../lib/paginas';
 import Titular from '../ui/Titular.astro';
 import Imagen from '../ui/Imagen.astro';
 import Icono from '../ui/Icono.astro';
@@ -22,7 +24,7 @@ const zonas = s ? s.items.filter((it) => it && it.titulo) : [];
             {zonas.map((z) => (
               <li class="senal">
                 <Icono nombre="mapa" tam={16} class="shrink-0" />
-                {z.titulo}
+                {enlaceDe(z) ? <a href={enlaceDe(z)} class="senal-enlace">{z.titulo}</a> : z.titulo}
               </li>
             ))}
           </ul>
@@ -45,6 +47,10 @@ const zonas = s ? s.items.filter((it) => it && it.titulo) : [];
 <style>
   .senales { display: flex; flex-wrap: wrap; gap: .6rem; }
   .senal { display: inline-flex; align-items: center; gap: .45rem; min-height: 2.5rem; padding: .45rem .9rem; border-radius: .35rem; background: var(--c-texto); color: var(--c-fondo); font-weight: 800; font-size: .92rem; box-shadow: inset 0 0 0 2px var(--c-texto), inset 0 0 0 4px var(--c-fondo); }
+  .senal:has(.senal-enlace) { position: relative; }
+  .senal-enlace { color: inherit; text-decoration: underline; text-decoration-color: var(--c-primario); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+  .senal-enlace::after { content: ""; position: absolute; inset: 0; }
+  .senal-enlace:focus-visible { outline: 3px solid var(--c-primario); outline-offset: 2px; }
   .zonas :global(.titular-texto) { opacity: .9; }
   .zonas-foto { aspect-ratio: 4 / 3; }
   @media (min-width: 768px) {

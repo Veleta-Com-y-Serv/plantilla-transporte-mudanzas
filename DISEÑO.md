@@ -70,3 +70,8 @@ logotipos, sin matrículas legibles, sin personas reconocibles.
 - [x] `php artisan plantillas:comprobar transporte-mudanzas --construir`: Cumple (0 errores, 0 avisos).
 - [ ] Fotos generadas y previews definitivas (paso de fotos), etiqueta `v1.0.0` y repo `Veleta-Com-y-Serv/plantilla-transporte-mudanzas`.
 - [ ] En la plataforma: `config/plantillas.php` (`repos` y `refs`) y `php artisan plantillas:sync --demos`.
+
+## Páginas propias (fichas y zonas)
+Con la misma piel que la portada: cabecera y pie de la plantilla, migas (Inicio › Sección › Elemento), hero con la foto del
+elemento (sin foto, su icono), `detalle` en párrafos, tabla de datos, caja de contacto, galería (`imagenes`) y otros elementos
+de la misma lista; en las zonas, entrada, texto de la zona, servicios, trabajos del lugar, opiniones y contacto.

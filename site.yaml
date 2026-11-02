@@ -55,14 +55,54 @@ secciones:
     titulo: Movemos todo lo que tengas
     texto: "Desde un sofá hasta una oficina entera. Tú eliges cuánto hacemos nosotros."
     items:
-      - { titulo: Mudanzas de pisos y casas, texto: "Locales y nacionales, con embalaje y montaje si los quieres.", icono: casa }
-      - { titulo: Mudanzas de oficinas, texto: "En fin de semana o de noche, para que no dejes de trabajar.", icono: maletin }
-      - { titulo: Mudanzas nacionales, texto: "Rutas semanales a Valencia, Madrid, Barcelona y el norte.", icono: ruta }
+      - titulo: Mudanzas de pisos y casas
+        texto: "Locales y nacionales, con embalaje y montaje si los quieres."
+        icono: casa
+        detalle: |
+          Una mudanza de piso o de casa empieza mucho antes del día de la carga. Primero te escuchamos: de dónde sales, a dónde vas, cuántas habitaciones hay y qué muebles son grandes o delicados. Con eso, y con una visita o una videollamada para ver los accesos, preparamos un plan de trabajo y un precio cerrado por escrito.
+
+          El día acordado llega un equipo con el vehículo adecuado, mantas, correas y carro. Protegemos suelos, marcos de puerta y ascensor antes de mover nada, cargamos de forma que lo pesado vaya abajo y lo frágil quede a salvo, y etiquetamos cada caja por habitación para que en destino cada cosa vaya directa a su sitio.
+
+          Si quieres, también nos encargamos del embalaje, del desmontaje y montaje de muebles y de dejarlo todo colocado. Es un servicio pensado para familias, parejas y personas que se mudan solas y quieren llegar a la casa nueva sin cargar con el cansancio de la mudanza. Tú decides cuánto hacemos nosotros y cuánto prefieres llevar por tu cuenta.
+      - titulo: Mudanzas de oficinas
+        texto: "En fin de semana o de noche, para que no dejes de trabajar."
+        icono: maletin
+        detalle: |
+          Trasladar una oficina es, sobre todo, un problema de organización: lo que importa es que el lunes por la mañana el equipo encuentre su puesto de trabajo montado y funcionando. Por eso empezamos con un reconocimiento de las instalaciones y una planificación por zonas, puestos y departamentos, con un responsable por tu parte que sepa decidir sobre la marcha.
+
+          Trabajamos en fin de semana, en festivos o de noche, según lo que menos moleste a tu actividad. Numeramos y etiquetamos mesas, sillas, archivadores y cajas de documentación, desmontamos y volvemos a montar el mobiliario modular y movemos los equipos informáticos con el cuidado que merecen. La documentación sensible viaja precintada y bajo control.
+
+          Es un servicio para despachos, clínicas, comercios y empresas de cualquier tamaño que cambian de local o redistribuyen sus espacios. Te damos un calendario claro, un presupuesto por escrito y una persona de contacto durante toda la operación, para que el cambio de sede no se convierta en días perdidos.
+      - titulo: Mudanzas nacionales
+        texto: "Rutas semanales a Valencia, Madrid, Barcelona y el norte."
+        icono: ruta
+        detalle: |
+          Cuando el destino está lejos, lo que más tranquiliza es saber cuándo sale y cuándo llega el camión. Nuestras rutas nacionales salen de forma regular desde Castellón hacia Valencia, Madrid, Barcelona y el norte, así que normalmente hay un viaje próximo en el que tu mudanza encaja sin pagar un vehículo entero para ti solo.
+
+          Visitamos tu vivienda, o la vemos por videollamada, para calcular el volumen real y te enviamos un presupuesto cerrado con fecha de carga y ventana de entrega. Cargamos con todo el material de protección, aseguramos la carga durante el trayecto y, en destino, descargamos y colocamos los muebles donde tú nos indiques.
+
+          Si necesitas más margen entre la salida y la entrada a la casa nueva, podemos guardar tus muebles unos días en nuestras instalaciones y entregarlos cuando te vaya bien. Es una opción cómoda para quien cambia de ciudad por trabajo, estudios o familia y no quiere improvisar con la logística.
       - { titulo: Portes y pequeños transportes, texto: "Un mueble, una compra grande o lo que quepa en una furgoneta.", icono: furgoneta }
-      - { titulo: Embalaje y cajas, texto: "Cajas, papel, plástico de burbujas y mantas. Te lo traemos o lo embalamos por ti.", icono: caja }
+      - titulo: Embalaje y cajas
+        texto: "Cajas, papel, plástico de burbujas y mantas. Te lo traemos o lo embalamos por ti."
+        icono: caja
+        detalle: |
+          Un buen embalaje es la mitad de una mudanza sin sustos. Te ofrecemos cajas resistentes de distintos tamaños, papel de embalar, plástico de burbujas, cinta y mantas, y puedes elegir entre recoger el material y empaquetar tú mismo, que te lo llevemos a casa o que lo hagamos nosotros de principio a fin.
+
+          Cuando embalamos por ti, trabajamos habitación por habitación: vajilla y cristalería envueltas una a una, ropa en cajas armario, libros en cajas pequeñas para que no pesen demasiado y cuadros y espejos con protección rígida. Cada caja se etiqueta con su contenido y su habitación de destino, de modo que desembalar resulta mucho más sencillo.
+
+          Es un servicio útil para quien tiene poco tiempo, para quien se muda con objetos delicados o de valor y para quien prefiere dejarlo en manos de un equipo con práctica. También puedes contratarlo solo para lo más complicado, como la cocina o la colección de arte, y encargarte tú del resto.
       - { titulo: Desmontaje y montaje, texto: "Armarios, camas y cocinas, desmontados aquí y montados en destino.", icono: herramienta }
       - { titulo: Guardamuebles, texto: "Trasteros vigilados por días, semanas o meses.", icono: almacen }
-      - { titulo: Elevador exterior, texto: "Subimos los muebles por la fachada cuando no caben por la escalera.", icono: elevador }
+      - titulo: Elevador exterior
+        texto: "Subimos los muebles por la fachada cuando no caben por la escalera."
+        icono: elevador
+        detalle: |
+          Hay edificios en los que el sofá, el armario o la cama de matrimonio simplemente no caben por la escalera ni por el ascensor. En esos casos, el elevador exterior es la solución: una plataforma que sube y baja los muebles por la fachada hasta el balcón o la ventana, sin forzar nada y sin arañar paredes ni barandillas.
+
+          Antes de comprometernos revisamos el acceso: ancho de la calle, sitio para estacionar, obstáculos como árboles o cables y tamaño de la ventana o el balcón. Con esa información te decimos si el elevador es viable y te explicamos si hace falta algún permiso de ocupación de la vía pública, para que no te lleves sorpresas el día de la mudanza.
+
+          El equipo trabaja con arneses y correas, asegura cada pieza antes de elevarla y mantiene la zona despejada para que la operación sea segura. Sirve igual para una mudanza completa que para subir o bajar un solo mueble voluminoso, y se puede combinar con el resto de servicios de mudanza, embalaje y montaje.
     galeria:
       - /fotos/embalaje.jpg
       - /fotos/carga.jpg
@@ -84,15 +124,22 @@ secciones:
     activa: true
     antetitulo: Cobertura
     titulo: De la Plana a toda España
+    titulo_pagina: "Mudanzas en {zona}"
+    texto_pagina: "{negocio} hace mudanzas en {zona} con vehículo propio, equipo de confianza y presupuesto cerrado por escrito."
     texto: "Mudanzas a diario en la provincia de Castellón y rutas semanales al resto de la península. Si tu destino no está, pregúntanos."
     imagen: /fotos/cobertura.jpg
     cta: { texto: Consultar mi ruta, url: "/#presupuesto" }
     items:
-      - { titulo: Castelló de la Plana }
-      - { titulo: Vila-real }
-      - { titulo: Benicàssim }
-      - { titulo: Almassora }
-      - { titulo: Borriana }
+      - titulo: Castelló de la Plana
+        texto: "Es nuestra casa y donde más mudanzas hacemos. Trabajamos en el centro, en los barrios del Grau y de la zona universitaria y en las urbanizaciones de alrededor, con vehículos de distintos tamaños para entrar tanto en las calles estrechas del casco antiguo como en los bloques con garaje amplio. Hacemos mudanzas de pisos y casas, traslados de oficinas y comercios, portes pequeños y guardamuebles. Si el edificio no tiene ascensor o los muebles no caben por la escalera, valoramos el elevador exterior. Desde aquí salimos también hacia Almassora, Vila-real y el resto de la provincia, y te damos el presupuesto cerrado tras una visita o una videollamada sin compromiso."
+      - titulo: Vila-real
+        texto: "Mudanzas en Vila-real y su entorno, con salida diaria desde Castelló de la Plana. Movemos pisos del casco urbano, casas de las zonas de huerta y negocios del polígono, y organizamos el trabajo para que la carga y la descarga se hagan sin atascos en calles con tráfico o zonas azules. Si tu mudanza es entre Vila-real y Borriana, Nules o Onda, la ruta se resuelve en una sola jornada. Ofrecemos embalaje, desmontaje y montaje de muebles y trasteros vigilados por si la entrega de la vivienda nueva no coincide con la salida de la vieja. Pide presupuesto y te confirmamos fecha, hora de llegada y equipo por escrito."
+      - titulo: Benicàssim
+        texto: "En Benicàssim trabajamos con viviendas de vecindario y con chalés y apartamentos de la zona de playa y de las Villas. Muchas de estas casas tienen jardines, escaleras exteriores o accesos complicados, así que antes de la mudanza vemos el acceso y elegimos el vehículo y el equipo que mejor encajan. También atendemos a quien traslada su segunda residencia o cierra la temporada y necesita guardar los muebles unos meses. Cubrimos desde aquí los traslados hacia Orpesa, Castelló de la Plana y Vinaròs, además de rutas a Valencia y al resto de la península. Embalamos, montamos y colocamos lo que haga falta."
+      - titulo: Almassora
+        texto: "Almassora está a un paso de nuestra base, y eso se nota en el precio y en la disponibilidad. Hacemos mudanzas de pisos, de casas con patio y de pequeños negocios del casco urbano y de los polígonos cercanos, y prestamos portes puntuales de un mueble o de una compra grande. Para traslados entre Almassora, Castelló de la Plana y Vila-real organizamos el trabajo en una sola jornada y con el mismo equipo de principio a fin. Si necesitas cajas y material de embalaje, te los llevamos antes de la fecha, y si tu nueva casa aún no está lista, podemos custodiar tus muebles en nuestro guardamuebles."
+      - titulo: Borriana
+        texto: "En Borriana y el Grau hacemos mudanzas de pisos, casas de pueblo y viviendas cerca de la playa, con camiones de distintos tamaños según el acceso. Muchas calles del casco antiguo son estrechas, y por eso valoramos antes cómo va a entrar el vehículo, dónde se puede estacionar y si conviene usar el elevador exterior. Cubrimos los traslados desde y hacia Vila-real, Nules, Onda y Castelló de la Plana, y también las rutas semanales hacia Valencia, Madrid y Barcelona. Incluimos, si lo pides, embalaje, desmontaje y montaje, y te damos un presupuesto cerrado por escrito antes de empezar el trabajo."
       - { titulo: Onda }
       - { titulo: "L'Alcora" }
       - { titulo: Nules }

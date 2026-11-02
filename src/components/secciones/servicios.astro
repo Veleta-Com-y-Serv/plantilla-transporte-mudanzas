@@ -2,9 +2,11 @@
 // Servicios: banda clara a todo el ancho con titular partido y rejilla de 4 columnas sin tarjetas (celdas separadas por
 // líneas finas, número, icono en placa amarilla; al pasar el ratón la celda se vuelve marino). `items: [{titulo, texto, icono}]`.
 // Debajo, `galeria` (lista de fotos) como franja de fotos de borde a borde, sin márgenes. Sus títulos son también las
-// opciones del formulario. `cta` opcional.
+// opciones del formulario. `cta` opcional. Los servicios con `detalle` tienen página propia (/servicios/<slug>/): su título
+// es el enlace (celda entera clicable) y sale «Ver más»; los demás siguen como texto.
 import { seccion } from '../../data/site';
 import { altGaleria } from '../../lib/seo';
+import { enlaceDe } from '../../lib/paginas';
 import Titular from '../ui/Titular.astro';
 import Icono from '../ui/Icono.astro';
 import Imagen from '../ui/Imagen.astro';
@@ -26,8 +28,9 @@ const fotos = s ? s.galeria.slice(0, 8) : [];
                   <span class="servicio-icono"><Icono nombre={it.icono} tam={26} /></span>
                   <span class="servicio-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
                 </div>
-                <h3 class="servicio-titulo">{it.titulo}</h3>
+                <h3 class="servicio-titulo">{enlaceDe(it) ? <a href={enlaceDe(it)} class="servicio-enlace">{it.titulo}</a> : it.titulo}</h3>
                 {it.texto && <p class="servicio-texto">{it.texto}</p>}
+                {enlaceDe(it) && <span class="servicio-ver" aria-hidden="true">Ver más <Icono nombre="flecha" tam={16} /></span>}
               </li>
             ))}
           </ul>
@@ -55,12 +58,18 @@ const fotos = s ? s.galeria.slice(0, 8) : [];
 
 <style>
   .servicios-rejilla { display: grid; border-top: 1px solid var(--linea); }
-  .servicio { padding: 1.75rem 0 2rem; border-bottom: 1px solid var(--linea); transition: background-color .2s ease, color .2s ease; }
+  .servicio { position: relative; padding: 1.75rem 0 2rem; border-bottom: 1px solid var(--linea); transition: background-color .2s ease, color .2s ease; }
   .servicio-cabeza { display: flex; align-items: center; justify-content: space-between; }
   .servicio-icono { display: inline-grid; place-items: center; width: 3.25rem; height: 2.9rem; background: var(--c-primario); color: var(--sobre-primario); transform: skewX(-10deg); }
   .servicio-icono :global(svg) { transform: skewX(10deg); }
   .servicio-num { font-family: var(--fuente-titulos); font-weight: 900; font-style: italic; font-size: 1.1rem; opacity: .35; }
   .servicio-titulo { margin-top: 1.25rem; font-size: 1.25rem; }
+  .servicio-enlace { color: inherit; text-decoration: none; overflow-wrap: anywhere; }
+  .servicio-enlace::after { content: ""; position: absolute; inset: 0; }
+  .servicio-enlace:focus-visible { outline: none; }
+  .servicio:has(.servicio-enlace:focus-visible) { outline: 3px solid var(--c-texto); outline-offset: -3px; }
+  .servicio-ver { display: inline-flex; align-items: center; gap: .3rem; margin-top: 1rem; font-weight: 900; font-style: italic; text-transform: uppercase; font-size: .85rem; }
+  .servicio:hover .servicio-ver { color: var(--c-primario); }
   .servicio-texto { margin-top: .6rem; opacity: .78; font-size: .98rem; }
   @media (min-width: 640px) {
     .servicios-rejilla { grid-template-columns: repeat(2, minmax(0, 1fr)); border-left: 1px solid var(--linea); }
