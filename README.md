@@ -7,6 +7,7 @@ Web robusta a todo el ancho para mudanzas y transporte: flota, cobertura, proces
 - Campos propios: `hero.destacado`, `hero.formulario_titulo`, `hero.boton_formulario` (barra de ruta: origen, destino, fecha, teléfono); `servicios.galeria` (franja de fotos); `flota[]` (`nombre, texto, capacidad, imagen`, no se pinta vacía); `presupuesto.opciones` (tamaños de mudanza, con «; »), `presupuesto.nota`, `presupuesto.imagen`; `cifras.items` (no se pinta vacía).
 - Ejemplo: Mudanzas Penyagolosa, Castelló de la Plana (negocio ficticio, teléfonos ficticios).
 - SEO de base incluido (`src/lib/seo.ts`): canónica, og:image, JSON-LD (`MovingCompany`) y de las preguntas frecuentes, `robots.txt`, `sitemap.xml` y `llms.txt`; `noindex` si `seo.indexable: false`.
+- Varias páginas (opcional, `paginas:` en la raíz de `site.yaml`): Inicio + una página por entrada (`{ ruta, titulo, secciones: "a; b" }`, hasta 6) con el menú hecho solo; reparto recomendado en `template.yaml → paginas`. Sin la clave, una sola página larga.
 - Contenido editable en `site.yaml`; metadatos y guion del asistente en `template.yaml`; reglas para el agente en `CLAUDE.md`; brief de diseño en `DISEÑO.md`; fotos a generar en `fotos.json`.
 
 ```
